@@ -33,3 +33,6 @@ Tahap 4:
 2. Buat aplikasi baru di website Heroku untuk project ini
 3. Tambahkan dua secrets pada repositori github project ini: HEROKU_APP_NAME dan HEROKU_API_KEY
 4. Di repositori, ke Actions -> Workflow runs dan jalankan ulang workflows yang gagal. Tunggu hingga berhasil agar website ter-deploy dan dapat dibuka
+
+# Demonstrasi Unit Test model CatalogItem
+jalankan `python manage.py test`
