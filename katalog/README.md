@@ -1,0 +1,11 @@
+##Tugas 2: Pengenalan Aplikasi Django dan Models View Template (MVT) pada Django
+
+[Link website heroku](https://tugas2pbp-katalog.herokuapp.com/katalog/)
+
+
+
+Kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?:
+- Untuk menjaga konsistensi seluruh package beserta versi nya
+- Agar package terorganisir untuk masing2 project dan tidak tercampur-campur
+- Memisahkan environment python komputer kita dengan environment python project aplikasi
+
