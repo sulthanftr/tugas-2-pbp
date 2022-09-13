@@ -10,6 +10,7 @@
 - Memisahkan environment python komputer kita dengan environment python project aplikasi
 
 **Cara implementasi tahap 1 sampai 4:**
+<br />
  Tahap 1:
  1. Buat superuser, migrate project django, dan tes project dengan runserver
  2. Register app katalog dalam katalog/admin.py
