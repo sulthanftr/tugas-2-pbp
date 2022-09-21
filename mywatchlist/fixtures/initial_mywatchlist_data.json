@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": false,
+            "title": "Ford v Ferrari",
+            "rating": 5,
+            "release_date": "2019-02-01",
+            "review": "Must watch for all motorsport enthusiasts."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": false,
+            "title": "Inception",
+            "rating": 5,            
+            "release_date": "2010-01-04",
+            "review": "Mind-boggling science fiction action film directed by Nolan."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,            
+            "title": "Inglorious Basterds",
+            "rating": 4,
+            "release_date": "2009-05-05",
+            "review": "This film by Tarantino flows effortlessly and seamlessly from one chapter to another without a single weak point."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": true,            
+            "title": "The Imitation Game",
+            "rating": 5,
+            "release_date": "2014-06-06",
+            "review": "An extraordinary yet tragic story of Alan Turing's role in helping Britain win World War II."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "1984",
+            "rating": 3,
+            "release_date": "1984-02-3",
+            "review": "A movie adaptation of George Orwell's famous 1984 novel."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,            
+            "title": "Joker",
+            "rating": 4,
+            "release_date": "2019-01-01",
+            "review": "10/10 acting by Joaquin Phoenix. Insane story."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": false,
+            "title": "Interstellar",
+            "rating": 5,
+            "release_date": "2014-03-03",
+            "review": "Extraordinary sci-fi film by Nolan."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": false,
+            "title": "Catch Me If You Can",
+            "rating": 4,
+            "release_date": "2002-04-03",
+            "review": "Tells a real story about a man faking various jobs, including being a pilot."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "500 Days of Summer",
+            "rating": 4,
+            "release_date": "2009-09-09",
+            "review": "I love The Smiths."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": true,            
+            "title": "The Dark Knight",
+            "rating": 5,
+            "release_date": "2008-03-07",
+            "review": "Nolan nailed the Batman series with this and it's sequel, The Dark Knight Rises."
+        }
+    }
+]
