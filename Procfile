@@ -1,2 +1,2 @@
-release: sh -c 'python manage.py makemigrations && python manage.py migrate && python manage.py loaddata */fixtures/*.json'
+release: sh -c 'python manage.py migrate && python manage.py loaddata */fixtures/*.json'
 web: gunicorn project_django.wsgi --log-file -
