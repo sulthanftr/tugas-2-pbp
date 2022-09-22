@@ -29,3 +29,12 @@ Internet pada awalnya hanyalah suatu tempat untuk membaca suatu informasi yang d
 19. Commit dan push perubahan dan ke repositori github.
 20. Jalankan kembali workflow yang gagal pada repositori github.
 21. Akses halaman yang ter-deploy pada link aplikasi heroku. 
+
+![HTML response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221320_bqxwuj.png)
+
+![JSON Response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221506_dmxbtf.png)
+
+![XML Response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221454_h8iiki.png)
+
+## Testing
+Jalankan `python manage.py test`
