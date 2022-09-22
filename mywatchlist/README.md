@@ -30,10 +30,13 @@ Internet pada awalnya hanyalah suatu tempat untuk membaca suatu informasi yang d
 20. Jalankan kembali workflow yang gagal pada repositori github.
 21. Akses halaman yang ter-deploy pada link aplikasi heroku. 
 
+### HTML Response
 ![HTML response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221320_bqxwuj.png)
 
+### JSON Response
 ![JSON Response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221506_dmxbtf.png)
 
+### XML Response
 ![XML Response](https://res.cloudinary.com/dbev4mnac/image/upload/v1663808533/Screenshot_2022-09-21_221454_h8iiki.png)
 
 ## Testing
