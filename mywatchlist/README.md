@@ -20,12 +20,12 @@ Internet pada awalnya hanyalah suatu tempat untuk membaca suatu informasi yang d
 10. Kembalikan render ke mywatchlist.html dengan `return render(request, "mywatchlist.html", context)`
 11. Dalam `templates/mywatchlist.html`, buat for loop yang mengiterasi objek-objek MyWatchList dari parameter view sebelumnya.
 12. Tampilkan pula pesan banyak/sedikit menonton yang sudah diberikan sebelumnya
-13. pada `mywatchlist/urls.py`, daftarkan url yang menampilkan view yang baru dibuat. Lalu pada `projek_django/urls.py`, daftarkan url tersebut.
-14. pada `views.py`, buat 2 fungsi view: view yang menampilkan xml dan view yang menampilkan json.
-15. tambahkan routing url untuk kedua views tersebut di dalam `mywatchlist/urls.py`.
+13. Pada `mywatchlist/urls.py`, daftarkan url yang menampilkan view yang baru dibuat. Lalu pada `projek_django/urls.py`, daftarkan url tersebut.
+14. Pada `views.py`, buat 2 fungsi view: view yang menampilkan xml dan view yang menampilkan json.
+15. Tambahkan routing url untuk kedua views tersebut di dalam `mywatchlist/urls.py`.
 16. Buat migrasi dengan `python manage.py makemigrations` lalu `python manage.py migrate`
 17. Buat folder dan file `fixtures/initial_mywatchlist_data.json` lalu buat 10 data untuk objek `MyWatchList`. kemudian load data tersebut dengan `python manage.py loaddata initial_mywatchlist_data.json`
 18. Dalam `Procfile` tambahkan command `python manage.py loaddata */fixtures/*.json` sebagai command yang dijalankan pada deployment heroku
-19. Commit perubahan dan push ke repositori github.
+19. Commit dan push perubahan dan ke repositori github.
 20. Jalankan kembali workflow yang gagal pada repositori github.
-21. Akses halaman yang terdeploy pada link aplikasi heroku. 
+21. Akses halaman yang ter-deploy pada link aplikasi heroku. 
