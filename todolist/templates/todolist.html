@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h5>Nama: </h5>
+<p>{{nama}}</p>
+
+<h1>To Do List:</h1>
+
+<button><a href="{% url 'todolist:create-task' %}">Create Task</a></button><br/><br/>
+
+<table>
+    <tr>
+        <th>Task</th>
+        <th>User</th>
+        <th>Tanggal</th>
+        <th>Deskripsi</th>
+        <th>Selesai</th>
+    </tr>
+    
+    {% for task in todolist %}
+        <tr>
+            <th>{{task.title}}</th>
+            <th>{{task.user}}</th>
+            <th>{{task.date}}</th>
+            <th>{{task.description}}</th>
+            <th>{{task.is_finished}}</th>
+            <th><button><a href="{% url 'todolist:task-selesai' pk=task.id %}">Selesai</a></button></th>
+            <th><button><a href="{% url 'todolist:undo-task' pk=task.id %}">Belum Selesai</a></button></th>
+            <th><button><a href="{% url 'todolist:hapus-task' pk=task.id %}">Hapus</a></button></th>
+        </tr>
+    {% endfor %}
+</table>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+{% endblock content %}
