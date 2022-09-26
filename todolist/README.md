@@ -11,18 +11,18 @@ Setelah mengisi form secara menyeluruh, mengklik tombol Submit/Post akan mengiri
 
 ## Alur Implementasi Tugas 4
 
-Buat aplikasi todolist dengan: ```python manage.py startapp    todolist```, ubah direktori ke `/todolist`
-   2. Tambahkan path `todolist` ke dalam `project_django/urls.py`: ```path('todolist/', include('todolist.urls')),```
-   3.  Buat model `Task` pada `models.py`: ```class  Task(models.Model): user = models.ForeignKey(User, on_delete=models.CASCADE) date =    models.DateField(null=True) title = models.CharField(max_length=255)    description = models.TextField(blank=True, null=True) is_finished =    models.BooleanField(default=False)```
-   4. Implementasikan form registrasi, login, dan logout sesuai dengan tutorial pada Lab 3
-   5. Buat view `show_todolist` pada `views.py`
-   6. Buat view `task_selesai` untuk mengganti value `is_finished` pada objek Task menjadi `True`.
-   7. Buat view `undo_task` untuk mengganti value `is_finished` pada objek Task menjadi `False`.
-   8. Buat view `hapus_task` untuk menghapus objek Task dari database.
-   9.  Buat halaman utama todolist. Buat file `todolist/templates/todolist.html`.
-   10. Buat file `forms.py` pada folder `todolist`
-   11.  Buat sebuah class `ModelForm` bernama 	`TaskForm` yang hanya memiliki field `title` dan `description`
-   12.  Buat view `create_task` pada `views.py`. Jika `request.method` bersifat `POST`, buat sebuah objek Task baru dan isi parameter sesuai    dengan yang disubmit pada form. Jika tidak, buat objek `TaskForm`    baru dan kembalikan sebuah render ke `create-task.html'` beserta    objek tersebut.
-   13.  Buat template `create-task.html` sebagai form untuk membuat objek Task baru.
-   14.  Buat routing url pada setiap views di dalam `urls.py`
-   15.  Push ke repositori GitHub, Deploy repositori ke Heroku. Buat superuser, kemudian buat 2 user dengan masing-masing 3 objek task    melalui halaman admin django.
+- Buat aplikasi todolist dengan: ```python manage.py startapp    todolist```, ubah direktori ke `/todolist`
+- Tambahkan path `todolist` ke dalam `project_django/urls.py`: ```path('todolist/', include('todolist.urls')),```
+- Buat model `Task` pada `models.py`
+- Implementasikan form registrasi, login, dan logout sesuai dengan tutorial pada Lab 3
+- Buat view `show_todolist` pada `views.py`
+- Buat view `task_selesai` untuk mengganti value `is_finished` pada objek Task menjadi `True`.
+- Buat view `undo_task` untuk mengganti value `is_finished` pada objek Task menjadi `False`.
+- Buat view `hapus_task` untuk menghapus objek Task dari database.
+- Buat halaman utama todolist. Buat file `todolist/templates/todolist.html`.
+- Buat file `forms.py` pada folder `todolist`
+- Buat sebuah class `ModelForm` bernama	`TaskForm` yang hanya memiliki field `title` dan `description`
+- Buat view `create_task` pada `views.py`. Jika `request.method` bersifat `POST`, buat sebuah objek Task baru dan isi parameter sesuai dengan yang disubmit pada form. Jika tidak, buat objek `TaskForm` baru dan kembalikan sebuah render ke `create-task.html'` beserta objek tersebut.
+- Buat template `create-task.html` sebagai form untuk membuat objek Task baru.
+- Buat routing url pada setiap views di dalam `urls.py`
+- Push ke repositori GitHub, Deploy repositori ke Heroku. Buat superuser, kemudian buat 2 user dengan masing-masing 3 objek task melalui halaman admin django.
