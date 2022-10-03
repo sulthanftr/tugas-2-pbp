@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
 <title>Login</title>
 {% endblock meta %}
 
 {% block content %}
+   
+<!-- Custom styles for this template -->
+<link href="{% static 'style.css' %}" rel="stylesheet">
 
-<div class = "login">
+<body class="text-center">
+
+    <form class="form-signin w-100 m-auto" method="POST" action="">
+
+        {% csrf_token %}
+        <h1 class="h3 mb-4 fw-normal">Please log in</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                        <strong>{{ message|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="form-floating">
+            <input type="text" name="username" placeholder="Username" class="form-control">
+            <label for="floatingInput">Username</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="password" name="password" placeholder="Password" class="form-control">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="mb-3">
+            <label>
+                Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+            </label>
+        </div>
+
+        <input class="w-100 btn btn-lg btn-primary" type="submit" value="Login"></td>
+
+        <p class="mt-5 mb-3 text-muted">&copy; PBP 2022</p>
+
+    </form>
+</body>
+<!-- 
+<div class = "login text-center">
 
     <h1>Login</h1>
 
@@ -40,6 +82,6 @@
         
     Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
 
-</div>
+</div> -->
 
 {% endblock content %}

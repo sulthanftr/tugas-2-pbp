@@ -1,34 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
 <title>Registrasi Akun</title>
 {% endblock meta %}
 
-{% block content %}  
+{% block content %}
 
-<div class = "login">
-    
-    <h1>Formulir Registrasi</h1>  
+<!-- Custom styles for this template -->
+<link href="{% static 'style.css' %}" rel="stylesheet">
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+<body class="text-center"> 
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+    <form class="form-register w-100 m-auto" method="POST">
 
-</div>  
+        {% csrf_token %}
+        <h1>Formulir Registrasi</h1>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %} 
+                <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="form-floating my-3">
+            <input type="text" name="username" placeholder="Username" class="form-control">
+            <label for="floatingInput">Username</label>
+            <small class='text-muted'>{{ form.username.help_text }}</small>
+        </div>
+
+        <div class="form-floating">
+            <input type="password" name="password1" placeholder="Password" class="form-control">
+            <label for="floatingInput">Password</label>
+            <small class='text-muted'>{{ form.password1.help_text }}</small>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" name="password2" placeholder="Password" class="form-control">
+            <label for="floatingInput">Re-Enter Password</label>
+        </div>
+
+        <div class="mb-3">
+            <label>
+                Sudah mempunyai akun? <a href="{% url 'todolist:login' %}">Log in</a>
+            </label>
+        </div>
+
+        <input class="w-100 btn btn-lg btn-primary" type="submit" value="Register"></td>
+
+        <p class="mt-5 mb-3 text-muted">&copy; PBP 2022</p>        
+
+    </form>
+
+</body>  
 
 {% endblock content %}
