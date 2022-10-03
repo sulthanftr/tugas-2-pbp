@@ -1,7 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h5>Nama: </h5>
+
+<link href="{% static 'todolist.css' %}" rel="stylesheet">
+
+<header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong>📚 {{nama}}'s To-do List</strong>
+        </a>
+        <span class="navbar-text  ms-auto mx-4">Last login: {{ last_login }}</span>
+        <a class="btn btn-outline-danger" href="{% url 'todolist:logout' %}">Logout</a>
+      </div>
+    </div>
+</header>
+  
+<main>  
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <a href="{% url 'todolist:create-task' %}" class="btn btn-primary mb-4">Create Task</a>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for task in todolist %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <small class="text-muted">{{task.date}}</small>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-text mb-3">{{task.title}}</h3>
+                    {% if task.is_finished %}
+                        <h3 class="text-success">✅</h3>
+                    {% endif %}
+                </div>
+                <p class="card-text">{{task.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    {% if task.is_finished %}
+                    <a href="{% url 'todolist:undo-task' pk=task.id %}" class="btn btn-sm btn-outline-secondary">Undo Task</a>
+                    {% else %}
+                    <a href="{% url 'todolist:task-selesai' pk=task.id %}" class="btn btn-sm btn-outline-success">Mark Done</a>
+                    {% endif %}
+                    <a href="{% url 'todolist:hapus-task' pk=task.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+</main>
+
+<!-- <h5>Nama: </h5>
 <p>{{nama}}</p>
 
 <h1>To Do List:</h1>
@@ -33,6 +84,6 @@
 
 <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button> -->
 
 {% endblock content %}
