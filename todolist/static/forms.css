@@ -38,3 +38,7 @@ body {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+#hello-img {
+  background-image: url(../static/hello-imac-logo-D3BEA04B14-seeklogo.com.png);
+}
