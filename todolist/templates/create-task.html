@@ -1,29 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Create Task</title>
+{% endblock meta %}
 
 {% block content %}
 
+<link href="{% static 'forms.css' %}" rel="stylesheet">
+
 {% if user.is_authenticated %} 
-    <h1>Create task...</h1>
-    <br/><br/>
-    <div class="mb-3">
-        <form method="POST">
+
+    <body class="text-center">
+        <form class="form-signin w-100 m-auto" method="POST">
+
             {% csrf_token %}
-            <table>
+            <h1 class="h3 mb-4 fw-normal">Create a Task</h1>
 
-                <tr>
-                    <td>Title: </td>
-                    <td>{{ form.title }}</td>
-                </tr>
-                        
-                <tr>
-                    <td>Description: </td>
-                    <td>{{ form.description }}</td>
-                </tr>
+            <div class="form-floating">
+                <input type="text" name="title" placeholder="title" class="form-control">
+                <label for="floatingInput">Title</label>
+            </div>
 
-            </table>
-            <button class="btn btn-primary">Post</button>
+            <div class="form-floating">
+                <input type="description" name="description" placeholder="Description" class="form-control">
+                <label for="floatingDescription">Description</label>
+            </div>
+
+            <input class="w-100 btn btn-lg btn-primary mt-5" type="submit" value="Post"></td>
         </form>
-    </div>
+    </body>
 
     {% if messages %}
     <ul>
