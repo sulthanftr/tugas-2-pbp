@@ -1,28 +1,38 @@
-## Fungsi `{% csrf_token %}` pada elemen `<form>`
-CSRF token adalah suatu nilai unik, rahasia, dan tidak dapat ditebak yang dihasilkan secara server-side untuk setiap user. CSRF token memastikan hanya user dengan token tersebut saja yang dapat melakukan request HTTP. 
+## Perbedaan dari Inline, Internal, dan External CSS
+| | Inline | Internal | External |
+|-|--|--|--|
+|Perbedaan|Diletakkan pada attribut `<style>` dalam tag| Diletakkan di dalam tag `<head>` pada halaman|Diletakkan pada sebuah file .css|
+|Kelebihan|Perbaikan cepat, ukuran HTTP request kecil, berguna ketika  ingin melihat perubahan|HTML dan CSS tergabung dalam 1 file, Dapat memanfaatkan ID dan Class|HTML terpisahkan dari CSS sehingga lebih terorganisir, kecepatan loading menjadi cepat, file .css dapat digunakan pada berbagai halaman
+|Kekurangan|Harus diletakkan pada setiap tag| CSS hanya dapat merubah 1 halaman, memperlambat akses website|Perlu menunggu file .css terpanggil agar styles yang diberikan pada HTML tampil
 
-Tanpa CSRF token, seorang peretas atau siapapun dapat saja melakukan request HTTP ke website dengan parameter-parameter yang diperlukan pada form.
+## Penjelasan beberapa tag HTML
+- `<div>`: Mendefinisikan sebuah divisi atau bagian dari sebuah dokumen HTML
+- `<p>`: Merepresentasikan paragraf
+- `<h1>` hingga `<h6>`: Merepresentasikan Header halaman, dengan h1 ukuran terbesar hingga h6 ukuran terkecil
+- `<a>`: Mendefinisikan hyperlink
+- `<span>`:  Sebuah tag generik yang tidak membentuk baris baru sehingga mudah untuk melakukan perubahan di dalam baris
+- `<body>`:  Mendefinisikan body dari sebuah dokumen HTML, isi dari body HTML adalah seluruh konten dari dokumen tersebut
+- `<head>`:  Berisikan metadata dari suatu dokumen HTML
+- `<button>`:  Mendefinisikan sebuah tombol
+- `<input>`:  Mendefinisikan sebuah input yang dapat dimasukkan melalui tampilan halaman HTML
+- `<li>`:  Mendefinisikan sebuah list
+- `<ol>`: Mendefinisikan sebuah elemen terurut dari suati list
+- `<ul>`: Mendefinisikan sebuah elemen tak terurut dari suatu list
+- `<tb>`: Mendefinisikan sebuah tabel
+- `<th>`: Mendefinisikan sebuah sel header pada suatu tabel
+- `<tr>`: Mendefinisikan sebuah sel baris pada suatu tabel
+- `<main>`: Mendefinisikan konten utama dari suatu dokumen HTML
+- `<link>`: Mendefinisikan suatu hubungan antara dokumen HTML dengan suatu sumber eksternal
+- `<form>`: Mendefinisikan sebuah form berisi input untuk user 
+- `<label>`: Mendefinisikan label dari beberapa elemen pada HTML
 
-## Cara Membuat Elemen `<form>` Secara Manual
-Untuk membuat elemen form secara manual (tanpa generator seperti `{{ form.as.table }}`, Tampilkan setiap parameter form sebagai sebuah elemen. Contohnya, untuk form login yang berisi parameter username dan password, tampilkan `{{ form.username }}` dan `{{ form.password }}`, masing-masing sebagai elemen.
+## Selector CSS
+- Element Selector (with leading # or .): Menerapkan CSS pada semua element dengan tag yang dipilih
+- Class Selector (with leading .): Menerapkan CSS pada setiap tag dengan class yang dipilih
+- ID Selector (with leading #): Menerapkan CSS pada setiap tag dengan id yang dipilih
 
-## Alur Data dari Submisi User pada form HTML hingga Penyimpanan ke Database
-Setelah mengisi form secara menyeluruh, mengklik tombol Submit/Post akan mengirim data form ke backend dimana fungsi view yang bersesuaian akan dipanggil. Fungsi view akan membuat objek dari Model dengan parameter-parameter yang telah diterima, kemudian menyimpannya ke *database*.
-
-## Alur Implementasi Tugas 4
-
-- Buat aplikasi todolist dengan: ```python manage.py startapp    todolist```, ubah direktori ke `/todolist`
-- Tambahkan path `todolist` ke dalam `project_django/urls.py`: ```path('todolist/', include('todolist.urls')),```
-- Buat model `Task` pada `models.py`
-- Implementasikan form registrasi, login, dan logout sesuai dengan tutorial pada Lab 3
-- Buat view `show_todolist` pada `views.py`
-- Buat view `task_selesai` untuk mengganti value `is_finished` pada objek Task menjadi `True`.
-- Buat view `undo_task` untuk mengganti value `is_finished` pada objek Task menjadi `False`.
-- Buat view `hapus_task` untuk menghapus objek Task dari database.
-- Buat halaman utama todolist. Buat file `todolist/templates/todolist.html`.
-- Buat file `forms.py` pada folder `todolist`
-- Buat sebuah class `ModelForm` bernama	`TaskForm` yang hanya memiliki field `title` dan `description`
-- Buat view `create_task` pada `views.py`. Jika `request.method` bersifat `POST`, buat sebuah objek Task baru dan isi parameter sesuai dengan yang disubmit pada form. Jika tidak, buat objek `TaskForm` baru dan kembalikan sebuah render ke `create-task.html'` beserta objek tersebut.
-- Buat template `create-task.html` sebagai form untuk membuat objek Task baru.
-- Buat routing url pada setiap views di dalam `urls.py`
-- Push ke repositori GitHub, Deploy repositori ke Heroku. Buat superuser, kemudian buat 2 user dengan masing-masing 3 objek task melalui halaman admin django.
+## Implementasi Tugas
+- Install framework CSS Bootstrap pada `base.html`
+- Buat folder `static` pada aplikasi `todolist`
+- Terapkan style Bootstrap pada class dari masing-masing element pada dokumen HTML `login.html`, `register.html`, `create-task.html`, dan `todolist.html`
+- Tambahkan CSS eksternal untuk setiap dokumen HTML pada folder static. `forms.css` untuk halaman login, register, dan create task. `todolist.css` untuk halaman todolist.
