@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse, HttpResponseRedirect, response
+from django.core import serializers
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 
 from todolist.forms import TaskForm
@@ -74,20 +75,32 @@ def create_task(request):
         return render(request, 'create-task.html', {'form':form})
 
 @login_required(login_url='/todolist/login/')
-def task_selesai(request, pk):
+def change_status(request, pk):
     task = Task.objects.filter(id=pk).first()
-    task.is_finished = True
+    task.is_finished = task.is_finished ^ True
     task.save()
-    return HttpResponseRedirect(reverse("todolist:show_todolist"))
-
-@login_required(login_url='/todolist/login/')
-def undo_task(request, pk):
-    task = Task.objects.filter(id=pk).first()
-    task.is_finished = False
-    task.save()
-    return HttpResponseRedirect(reverse("todolist:show_todolist"))
+    return HttpResponse(b"CHANGED", status=201) # used for asynchronus task status change
 
 @login_required(login_url='/todolist/login/')
 def hapus_task(request, pk):
     Task.objects.filter(id=pk).first().delete()
-    return HttpResponseRedirect(reverse("todolist:show_todolist"))
+    return HttpResponse(b"DELETED", status=201) # used for asynchronus delete
+
+@login_required(login_url='/todolist/login/')
+def show_json(request):
+    data = Task.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+def add_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+
+        form.instance.user = request.user
+        form.instance.date = datetime.datetime.now()
+
+        if form.is_valid():
+            form.save()
+            return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

@@ -20,70 +20,102 @@
 <main>  
     <div class="album py-5 bg-light">
       <div class="container">
-        <a href="{% url 'todolist:create-task' %}" class="btn btn-primary mb-4">Create Task</a>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for task in todolist %}
-          <div class="col">
+
+        <form class="row g-3 align-items-center mb-4" id="form" onsubmit="return false;">
+          {% csrf_token %}
+
+          <div class="col-auto">
+            <label class="fs-4">Create a Task: </label>
+        </div>
+
+          <div class="col-auto">
+              <input type="text" name="title" placeholder="Title" class="form-control">
+          </div>
+
+          <div class="col-sm-7">
+            <input type="description" name="description" placeholder="Description" class="form-control">
+          </div>
+        
+          <input id="button" class="col btn btn-primary" type="submit" value="Create"></td>
+          
+        </form>
+
+        <div id="tasks" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div>
+    
+      </div>
+</main>
+
+<script>
+  async function getTodolist() {
+    return fetch("{% url 'todolist:show_json' %}").then((result) => result.json())
+  }
+
+  async function refreshTodolist(){
+    document.getElementById("tasks").innerHTML = ""
+    const todolist = await getTodolist()
+    let htmlstring = ``
+    todolist.forEach((task) => {
+      htmlstring +=
+      `
+      <div class="col">
             <div class="card shadow-sm">
               <div class="card-body">
-                <small class="text-muted">{{task.date}}</small>
+                <small class="text-muted">${task.fields.date}</small>
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="card-text mb-3">{{task.title}}</h3>
-                    {% if task.is_finished %}
-                        <h3 class="text-success">✅</h3>
-                    {% endif %}
+                    <h3 class="card-text mb-3">${task.fields.title}</h3>
+      `
+      if (task.fields.is_finished) {
+        htmlstring += `                        <h3 class="text-success">✅</h3>`
+      }
+      htmlstring += `
                 </div>
-                <p class="card-text">{{task.description}}</p>
+                <p class="card-text">${task.fields.description}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    {% if task.is_finished %}
-                    <a href="{% url 'todolist:undo-task' pk=task.id %}" class="btn btn-sm btn-outline-secondary">Undo Task</a>
-                    {% else %}
-                    <a href="{% url 'todolist:task-selesai' pk=task.id %}" class="btn btn-sm btn-outline-success">Mark Done</a>
-                    {% endif %}
-                    <a href="{% url 'todolist:hapus-task' pk=task.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+      `
+      if (task.fields.is_finished) {
+        htmlstring +=`
+          <a onclick=changeStatus(${task.pk}) class="btn btn-sm btn-outline-secondary">Undo Task</a>
+        `
+      }
+      else {
+        htmlstring += `
+          <a onclick=changeStatus(${task.pk}) class="btn btn-sm btn-outline-success">Mark Done</a>
+        `
+      }
+      htmlstring += `
+                    <a class="btn btn-sm btn-outline-danger" onclick=deleteTodolist(${task.pk})>Delete</a>   
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        {% endfor %}
-        </div>
-    </div>
-</main>
+      `
+    })
+    document.getElementById("tasks").innerHTML = htmlstring
+  }
 
-<!-- <h5>Nama: </h5>
-<p>{{nama}}</p>
+  function addTodolist() {
+    fetch("{% url 'todolist:add_task' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(refreshTodolist)
+    return false
+  }
 
-<h1>To Do List:</h1>
+  function changeStatus(id) {
+    fetch("{{ request.path }}change-status/"+id).then(refreshTodolist)
+    return false
+  }
 
-<button><a href="{% url 'todolist:create-task' %}">Create Task</a></button><br/><br/>
+  function deleteTodolist(id) {
+    fetch("{{ request.path }}hapus/"+id).then(refreshTodolist)
+    return false
+  }
 
-<table>
-    <tr>
-        <th>Task</th>
-        <th>User</th>
-        <th>Tanggal</th>
-        <th>Deskripsi</th>
-        <th>Selesai</th>
-    </tr>
-    
-    {% for task in todolist %}
-        <tr>
-            <th>{{task.title}}</th>
-            <th>{{task.user}}</th>
-            <th>{{task.date}}</th>
-            <th>{{task.description}}</th>
-            <th>{{task.is_finished}}</th>
-            <th><button><a href="{% url 'todolist:task-selesai' pk=task.id %}">Selesai</a></button></th>
-            <th><button><a href="{% url 'todolist:undo-task' pk=task.id %}">Belum Selesai</a></button></th>
-            <th><button><a href="{% url 'todolist:hapus-task' pk=task.id %}">Hapus</a></button></th>
-        </tr>
-    {% endfor %}
-</table>
+  document.getElementById("button").onclick = addTodolist
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button> -->
+  refreshTodolist()
+</script>
 
 {% endblock content %}
