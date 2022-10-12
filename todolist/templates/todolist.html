@@ -53,6 +53,9 @@
   async function refreshTodolist(){
     document.getElementById("tasks").innerHTML = ""
     const todolist = await getTodolist()
+    todolist.sort(function(a, b){
+      return a.id - b.id;
+    });
     let htmlstring = ``
     todolist.forEach((task) => {
       htmlstring +=
