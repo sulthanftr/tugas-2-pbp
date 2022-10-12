@@ -1,7 +1,7 @@
 ## Perbedaan _Asynchronous Programming_ dengan _Synchronous Programming_.
 | _Asynchronous Programming_ | _Synchronous Programming_ |
-|--|--|--|
-|Operasi pada program _synchronous_ dilakukan satu demi satu. Hanya ketika satu operasi telah selesai dieksekusi lah operasi lain dapat dilakukan. Dengan kata lain, setiap operasi dalam program harus menunggu gilirannya untuk dieksekusi.|Operasi pada program _asynchronous_ dapat dilakukan secara pararel ketika operasi lain sedang dalam proses eksekusi. Sehingga, berbagai request dapat diproses sekaligus di saat yang bersamaan, tanpa menunggu giliran untuk eksekusi.
+|--|--|
+| Operasi pada program _synchronous_ dilakukan satu demi satu. Hanya ketika satu operasi telah selesai dieksekusi lah operasi lain dapat dilakukan. Dengan kata lain, setiap operasi dalam program harus menunggu gilirannya untuk dieksekusi. | Operasi pada program _asynchronous_ dapat dilakukan secara pararel ketika operasi lain sedang dalam proses eksekusi. Sehingga, berbagai request dapat diproses sekaligus di saat yang bersamaan, tanpa menunggu giliran untuk eksekusi. |
 
 
 ## _Event-Driven Programming_
