@@ -88,7 +88,8 @@ def hapus_task(request, pk):
 
 @login_required(login_url='/todolist/login/')
 def show_json(request):
-    data = Task.objects.all()
+    user = request.user
+    data = Task.objects.filter(user=user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required(login_url='/todolist/login/')
