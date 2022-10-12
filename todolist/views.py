@@ -93,7 +93,7 @@ def show_json(request):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required(login_url='/todolist/login/')
-def add_task(request):
+def add_task(request):                      # asynchronus create task
     if request.method == 'POST':
         form = TaskForm(request.POST)
 
