@@ -21,26 +21,45 @@
     <div class="album py-5 bg-light">
       <div class="container">
 
-        <form class="row g-3 align-items-center mb-4" id="form" onsubmit="return false;">
-          {% csrf_token %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">
+          Create a Task
+        </button>
 
-          <div class="col-auto">
-            <label class="fs-4">Create a Task: </label>
+        <!-- Modal -->
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal1Label">Create Task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="form" class="form-signin w-100 m-auto" method="POST">
+
+                  {% csrf_token %}
+
+                  <div class="form-floating mb-2">
+                      <input type="text" name="title" placeholder="Title" class="form-control">
+                      <label for="floatingInput">Title</label>
+                  </div>
+
+                  <div class="form-floating">
+                      <textarea type="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
+                      <label for="floatingDescription">Description</label>
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="button" type="button" class="btn btn-primary" type="submit" data-bs-dismiss="modal" value="Post">Post</button>
+              </div>
+              </form>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-          <div class="col-auto">
-              <input type="text" name="title" placeholder="Title" class="form-control">
-          </div>
-
-          <div class="col-sm-7">
-            <input type="description" name="description" placeholder="Description" class="form-control">
-          </div>
-        
-          <input id="button" class="col btn btn-primary" type="submit" value="Create"></td>
-          
-        </form>
-
-        <div id="tasks" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div>
+        <div id="tasks" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3"></div>
     
       </div>
 </main>
@@ -100,6 +119,7 @@
           method: "POST",
           body: new FormData(document.querySelector('#form'))
       }).then(refreshTodolist)
+      document.getElementById("form").reset()
     return false
   }
 
